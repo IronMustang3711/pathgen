@@ -37,7 +37,7 @@ class PathfinderTest {
             PathDesc(name: "LLSwitch",
                     waypoints: [
                             Waypoint(0, 0, 90),
-                            Waypoint(-30, 100, 90),
+                            Waypoint(-20, 100, 90),
                             Waypoint(20, 157, 180),
                     ]),
             PathDesc(name: "RRScale",
