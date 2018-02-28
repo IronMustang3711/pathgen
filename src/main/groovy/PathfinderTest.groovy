@@ -48,9 +48,9 @@ class PathfinderTest {
                     ]),
             PathDesc(name: "LLScale",
                     waypoints: [Waypoint(0, 0, 90),
-                                Waypoint(-10, 100, 90),
-                                Waypoint(-10, 300, 90),
-                                Waypoint(15, 330, 180)
+                                Waypoint(-26, 100, 90),
+                                Waypoint(-26, 300, 90),
+                                Waypoint(-10, 310, 180)
                     ]),
             PathDesc(name: "CRSwitch",
                     waypoints: [Waypoint(0, 0, 90),
@@ -73,8 +73,8 @@ class PathfinderTest {
                     waypoints: [Waypoint(0, 0, 90),
                                 Waypoint(0,12,90),
                                 Waypoint(10,120,90),
-                                Waypoint(10, 210, 90),
-                                Waypoint(-60, 250, 180),
+                                Waypoint(10, 160, 90),
+                                Waypoint(-60, 230, 180),
                                 Waypoint(-160, 250, 180),
                                 Waypoint(-180, 270, 90),
                                 Waypoint(-180, 320, 90),
