@@ -17,7 +17,8 @@ dependencies {
     compile files('lib/Pathfinder-Java-1.8.jar')
 }
 
-task genProfiles(type: JavaExec){
+task('genProfiles', type: JavaExec){
+    description 'generates the motion profiles'
     dependsOn(build)
 
     classpath = sourceSets.main.runtimeClasspath
