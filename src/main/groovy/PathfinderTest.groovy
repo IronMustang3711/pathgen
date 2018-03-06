@@ -4,6 +4,8 @@ import jaci.pathfinder.Waypoint
 import jaci.pathfinder.modifiers.TankModifier
 
 import static jaci.pathfinder.Pathfinder.d2r
+import static jaci.pathfinder.Pathfinder.r2d
+
 
 class PathDesc {
     Waypoint[] waypoints
@@ -88,7 +90,7 @@ class PathfinderTest {
     static final double cm_per_inch = 2.54
     static final double m_per_inch = cm_per_inch / 100.0 //0.0254
     static final double encoder_ticks_per_inch = 76.0
-    static final double encoder_ticks_per_m = encoder_ticks_per_inch * (1.0 / m_per_inch); //~5118
+    static final double encoder_ticks_per_m = encoder_ticks_per_inch * (1.0 / m_per_inch) //~5118
 
     static def gen(PathDesc desc) {
 
@@ -135,6 +137,9 @@ class PathfinderTest {
 #include <vector>
 #include "profile.h"
 namespace mp {
+/*
+\t${desc.waypoints.collect{"($it.x,$it.y,${r2d(it.angle)}"}.join(',\n\t')}
+*/
 extern std::vector<mp::Prof> ${desc.name};
 }
 
