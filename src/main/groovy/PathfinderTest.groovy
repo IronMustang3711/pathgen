@@ -75,8 +75,8 @@ class PathfinderTest {
                                 Waypoint(10,120,90),
                                 Waypoint(10, 160, 90),
                                 Waypoint(-60, 230, 180),
-                                Waypoint(-160, 250, 180),
-                                Waypoint(-180, 270, 90),
+                                Waypoint(-130, 230, 180),
+                                Waypoint(-180, 300, 90),
                                 Waypoint(-180, 320, 90),
                     ]),
 
