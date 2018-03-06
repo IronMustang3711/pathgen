@@ -10,6 +10,9 @@ import static jaci.pathfinder.Pathfinder.r2d
 class PathDesc {
     Waypoint[] waypoints
     String name
+    double maxVel = 50.0
+    double maxAccel = 0.25 * maxVel
+    double maxJerk = 10 * maxAccel
 }
 
 
@@ -22,13 +25,13 @@ class PathfinderTest {
                     waypoints: [Waypoint(0.0d, 0.0d, 90.0d),
                                 Waypoint(0, 120, 90)
                     ]),
-            PathDesc(name: "RFwd",
-                    waypoints: [Waypoint(0.0d, 0.0d, 90.0d),
-                                Waypoint(-10, 200, 90)
+            PathDesc(name: "CRSwitch",
+                    waypoints: [Waypoint(0, 0, 90),
+                                Waypoint(37, 110, 90)
                     ]),
-            PathDesc(name: "LFwd",
-                    waypoints: [Waypoint(0.0d, 0.0d, 90.0d),
-                                Waypoint(0, 220, 90)
+            PathDesc(name: "CLSwitch",
+                    waypoints: [Waypoint(0, 0, 90),
+                                Waypoint(-90, 110, 90)
                     ]),
             PathDesc(name: "RRSwitch",
                     waypoints: [
@@ -42,6 +45,14 @@ class PathfinderTest {
                             Waypoint(-20, 100, 90),
                             Waypoint(20, 157, 180),
                     ]),
+            PathDesc(name: "RFwd",
+                    waypoints: [Waypoint(0.0d, 0.0d, 90.0d),
+                                Waypoint(-10, 200, 90)
+                    ]),
+            PathDesc(name: "LFwd",
+                    waypoints: [Waypoint(0.0d, 0.0d, 90.0d),
+                                Waypoint(0, 220, 90)
+                    ]),
             PathDesc(name: "RRScale",
                     waypoints: [Waypoint(0, 0, 90),
                                 Waypoint(10, 100, 90),
@@ -53,14 +64,6 @@ class PathfinderTest {
                                 Waypoint(-26, 100, 90),
                                 Waypoint(-26, 300, 90),
                                 Waypoint(-10, 310, 180)
-                    ]),
-            PathDesc(name: "CRSwitch",
-                    waypoints: [Waypoint(0, 0, 90),
-                                Waypoint(37, 110, 90)
-                    ]),
-            PathDesc(name: "CLSwitch",
-                    waypoints: [Waypoint(0, 0, 90),
-                                Waypoint(-90, 110, 90)
                     ]),
             PathDesc(name: "RLScale",
                     waypoints: [Waypoint(0, 0, 90),
@@ -101,9 +104,9 @@ class PathfinderTest {
         }
 
         double timeStep = 0.01
-        double maxVel = (50.0 * m_per_inch)
-        double maxAccel = 0.25 * maxVel
-        double maxJerk = maxAccel * 10
+        double maxVel = desc.maxVel * m_per_inch //(50.0 * m_per_inch)
+        double maxAccel =desc.maxAccel * m_per_inch  //0.25 * maxVel
+        double maxJerk = desc.maxJerk * m_per_inch
 
 
         def config = new Trajectory.Config(
@@ -138,6 +141,8 @@ class PathfinderTest {
 #include "profile.h"
 namespace mp {
 /*
+(${desc.maxVel*m_per_inch}, ${desc.maxAccel*m_per_inch}, ${desc.maxJerk*m_per_inch})
+-------------
 \t${desc.waypoints.collect{"($it.x,$it.y,${r2d(it.angle)}"}.join(',\n\t')}
 */
 extern std::vector<mp::Prof> ${desc.name};
@@ -167,111 +172,7 @@ std::vector<mp::Prof> mp::${desc.name} =  {{
 
     }
 
-
-    //SCRATCH:
-    {
-
-//        Waypoint[] waypoints = [
-//                Waypoint(0, 0, 90),
-//                Waypoint(10,100,90),
-//                Waypoint(-40, 160, 180),
-//        ]
-
-//        Waypoint[] waypoints = [
-//            Waypoint(0,0,90),
-//            Waypoint(0,120,90)
-//        ]
-
-//        Waypoint[] waypoints = [
-//                Waypoint(0, 0, 90),
-//                Waypoint(10, 100, 90),
-//                Waypoint(10,280,90),
-//                Waypoint(-15,300,180),
-//              //  Waypoint(-10, 324, 180)
-//        ]
-        //center to swtich
-        Waypoint[] waypoints = [
-                Waypoint(0, 0, 90),
-                Waypoint(70, 140, 90)
-        ]
-
-        waypoints.each { w ->
-            w.x *= m_per_inch
-            w.y *= m_per_inch
-            w.angle = d2r(w.angle)
-        }
-
-        double timeStep = 0.01
-        double maxVel = (50.0 * m_per_inch)
-        double maxAccel = 0.25 * maxVel
-        double maxJerk = maxAccel * 10
-
-
-        def config = new Trajectory.Config(
-                Trajectory.FitMethod.HERMITE_QUINTIC,
-                Trajectory.Config.SAMPLES_HIGH,
-                timeStep, maxVel, maxAccel, maxJerk)
-
-
-        def path = Pathfinder.generate(waypoints, config)
-
-
-        double wheelBase = 34.0 * m_per_inch
-
-        def tank = new TankModifier(path)
-        tank.modify(wheelBase)
-
-        def leftPath = tank.leftTrajectory
-        def rightPath = tank.rightTrajectory
-
-
-
-        Pathfinder.writeToCSV(new File('left.csv'), leftPath)
-        Pathfinder.writeToCSV(new File('right.csv'), rightPath)
-        Pathfinder.writeToCSV(new File("path.csv"), path)
-
-        new File('profile.h').withPrintWriter { pw ->
-//            pw << """
-//#include <array>
-//
-//namespace mp {
-//
-//constexpr double TIME_STEP = $timeStep ;
-//
-//
-//
-////positions are in encoder ticks.
-////velocities are in encoder ticks per 100 ms.
-//struct Prof {
-//    double leftPosition;
-//    double leftVelocity;
-//    double rightPosition;
-//    double rightVelocity;
-//};
-//"""
-            pw << """
-#include "profile.h"
- std::array<mp::Prof,${path.length()}> mp::PROFS = {{
-"""
-
-
-            [leftPath, rightPath].collect { it.segments }.transpose().each { l, r ->
-                def lp = l.position * encoder_ticks_per_m /// 10.0
-                def lv = l.velocity * encoder_ticks_per_m / 10.0
-                def rp = r.position * encoder_ticks_per_m /// 10.0
-                def rv = r.velocity * encoder_ticks_per_m / 10.0
-                pw << "\t{$lp,$lv,$rp,$rv},\n"
-            }
-            pw << '}};\n'
-
-        } //withPrintWriter
-
-
-    }
-
-
     static void main(args) {
        pathDescs.each{gen(it)}
-        //new PathfinderTest()
     }
 }
