@@ -60,15 +60,6 @@ class PathfinderTest {
                     waypoints: [Waypoint(0, 0, 90),
                                 Waypoint(-90, 110, 90)
                     ]),
-
-//            PathDesc(name: "CRScale",
-//                    waypoints: [Waypoint(0, 0, 90),
-//                                Waypoint(0,10,90),
-//                                Waypoint(60, 100, 90),
-//                                Waypoint(60, 180, 90),
-//                                Waypoint(50, 300, 90),
-//
-//                    ]),
             PathDesc(name: "RLScale",
                     waypoints: [Waypoint(0, 0, 90),
                                 Waypoint(0,12,90),
@@ -79,25 +70,25 @@ class PathfinderTest {
                                 Waypoint(-180, 300, 90),
                                 Waypoint(-180, 320, 90),
                     ]),
+            PathDesc(name: "LRScale",
+                    waypoints: [Waypoint(0, 0, 90),
+                                Waypoint(0,12,90),
+                                Waypoint(-10,120,90),
+                                Waypoint(-10, 160, 90),
+                                Waypoint(60, 230, 180),
+                                Waypoint(130, 230, 180),
+                                Waypoint(180, 300, 90),
+                                Waypoint(180, 320, 90),
+                    ]),
 
     ]
 
-//    static final double inches_per_encoder_tick = 0.00872;
-//    static final double encoder_ticks_per_inch = 114.7;
+
 
     static final double cm_per_inch = 2.54
     static final double m_per_inch = cm_per_inch / 100.0 //0.0254
-    //static final double encoder_ticks_per_rev = 1410.0
-    //static final double inches_per_rev = 6.0 * Math.PI //18.85
-    //static final double m_per_rev = inches_per_rev * m_per_inch //0.48
-    static final double encoder_ticks_per_inch = 76.0 //encoder_ticks_per_rev / inches_per_rev;
+    static final double encoder_ticks_per_inch = 76.0
     static final double encoder_ticks_per_m = encoder_ticks_per_inch * (1.0 / m_per_inch); //~5118
-
-/*
-IMPORTANT:
-ALL DISTANCE UNITS ARE IN METERS!!!
-ALL ANGLES ARE MEASURED IN RADIANS!!!!!
- */
 
     static def gen(PathDesc desc) {
 
