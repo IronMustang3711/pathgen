@@ -11,8 +11,8 @@ class PathDesc {
     Waypoint[] waypoints
     String name
     double maxVel = 50.0
-    double maxAccel = 0.25 * maxVel
-    double maxJerk = 10 * maxAccel
+    double maxAccel = 0.8 * maxVel
+    double maxJerk = maxAccel
 }
 
 
@@ -25,40 +25,71 @@ class PathfinderTest {
                     waypoints: [Waypoint(0.0d, 0.0d, 90.0d),
                                 Waypoint(0, 120, 90)
                     ]),
+            /*
+            x needs to be 6"-12"
+
+             */
             PathDesc(name: "CRSwitch",
                     waypoints: [Waypoint(0, 0, 90),
-                                Waypoint(37, 110, 90)
+                                Waypoint(28, 110, 90)
                     ]),
+            /*
+            ok
+             */
             PathDesc(name: "CLSwitch",
                     waypoints: [Waypoint(0, 0, 90),
                                 Waypoint(-90, 110, 90)
                     ]),
+            /*
+                y needs 8" - +12"
+             */
             PathDesc(name: "RRSwitch",
                     waypoints: [
                             Waypoint(0, 0, 90),
                             Waypoint(10, 100, 90),
-                            Waypoint(-45, 145, 180),
+                            Waypoint(-44, 145, 180),
+//                                Waypoint(0, 0, 90),
+//                                Waypoint(10, 100, 90),
+//                                Waypoint(10, 120, 90),
+//                                Waypoint(-30, 145, 180),
+//                                Waypoint(-44, 145, 180)
                     ]),
+            /*
+            ok
+             */
             PathDesc(name: "LLSwitch",
                     waypoints: [
                             Waypoint(0, 0, 90),
                             Waypoint(-20, 100, 90),
-                            Waypoint(20, 157, 180),
+                            Waypoint(-20,120,90),
+                            Waypoint(10,157,180),
+                            Waypoint(26, 160, 180),
                     ]),
+            /*ok*/
             PathDesc(name: "RFwd",
                     waypoints: [Waypoint(0.0d, 0.0d, 90.0d),
                                 Waypoint(-10, 200, 90)
                     ]),
+            /*ok
+             */
             PathDesc(name: "LFwd",
                     waypoints: [Waypoint(0.0d, 0.0d, 90.0d),
                                 Waypoint(0, 220, 90)
                     ]),
+            /*
+            y needs to be ~ +6"
+            x needs to be > 12"
+             */
             PathDesc(name: "RRScale",
                     waypoints: [Waypoint(0, 0, 90),
                                 Waypoint(10, 100, 90),
                                 Waypoint(10, 280, 90),
                                 Waypoint(-15, 300, 180)
                     ]),
+            /*
+            y is too far by 12"
+            x is too far by 24"
+             */
             PathDesc(name: "LLScale",
                     waypoints: [Waypoint(0, 0, 90),
                                 Waypoint(-26, 100, 90),
@@ -79,7 +110,7 @@ class PathfinderTest {
                     waypoints: [Waypoint(0, 0, 90),
                                 Waypoint(0,12,90),
                                 Waypoint(-10,120,90),
-                                Waypoint(-10, 160, 90),
+                                Waypoint(-10, 146, 90),
                                 Waypoint(60, 230, 180),
                                 Waypoint(130, 230, 180),
                                 Waypoint(180, 300, 90),
