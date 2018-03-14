@@ -17,11 +17,19 @@ dependencies {
     compile files('lib/Pathfinder-Java-1.8.jar')
 }
 
-task('genProfiles', type: JavaExec){
+task genProfiles( type: JavaExec){
     description 'generates the motion profiles'
     dependsOn(build)
 
     classpath = sourceSets.main.runtimeClasspath
     main = 'PathfinderTest'
     jvmArgs  '-Djava.library.path=' + file('lib').absolutePath
+}
+
+task('copyHeaders', type: Copy){
+    description 'copy generated headers to the robot project'
+    dependsOn(genProfiles)
+
+    from 'gensrc'
+    into '../damnit/Damnit/src/auto'
 }
