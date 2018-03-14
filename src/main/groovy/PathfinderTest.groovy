@@ -14,7 +14,14 @@ class PathDesc {
     double maxAccel = 0.8 * maxVel
     double maxJerk = maxAccel
 }
+/*
 
+max vel
+ ~ 1100 ticks / 100 ms
+ ~ 144 in/sec
+ ~ 12 ft/sec
+ ~ 8 mph
+ */
 
 @Newify([Waypoint, PathDesc])
 class PathfinderTest {
@@ -26,7 +33,7 @@ class PathfinderTest {
                                 Waypoint(0, 120, 90)
                     ]),
             /*
-            x needs to be 6"-12"
+           [] x needs to be 6"-12"
 
              */
             PathDesc(name: "CRSwitch",
@@ -41,7 +48,7 @@ class PathfinderTest {
                                 Waypoint(-90, 110, 90)
                     ]),
             /*
-                y needs 8" - +12"
+              []  y needs 8" - +12"
              */
             PathDesc(name: "RRSwitch",
                     waypoints: [
@@ -77,25 +84,38 @@ class PathfinderTest {
                                 Waypoint(0, 220, 90)
                     ]),
             /*
-            y needs to be ~ +6"
-            x needs to be > 12"
+           [x] y needs to be ~ +6"
+           [] x needs to be > 12"
              */
             PathDesc(name: "RRScale",
+                    maxVel: 80.0,
+                    maxAccel: 30.0,
+                    maxJerk: 12,
                     waypoints: [Waypoint(0, 0, 90),
                                 Waypoint(10, 100, 90),
-                                Waypoint(10, 280, 90),
-                                Waypoint(-15, 300, 180)
+                                Waypoint(10, 240, 90),
+                                Waypoint(14, 270, 90),
+                                Waypoint(14, 282, 90),
+                                Waypoint(-5, 306, 180),
                     ]),
-            /*
-            y is too far by 12"
-            x is too far by 24"
-             */
-            PathDesc(name: "LLScale",
-                    waypoints: [Waypoint(0, 0, 90),
-                                Waypoint(-26, 100, 90),
-                                Waypoint(-26, 300, 90),
-                                Waypoint(-10, 310, 180)
-                    ]),
+//            /*
+//           [] y is too far by 12"
+//           [] x is too far by 24"
+//             */
+//            PathDesc(name: "LLScale",
+//                    waypoints: [Waypoint(0, 0, 90),
+//                                Waypoint(-26, 100, 90),
+//                                Waypoint(-26, 300, 90),
+//                                Waypoint(-10, 310, 180)
+//                    ]),
+                        PathDesc(name: "LLScale",
+                                waypoints: [Waypoint(0, 0, 90),
+                                            Waypoint(-10, 100, 90),
+                                            Waypoint(-10, 240, 90),
+                                            Waypoint(-14, 270, 90),
+                                            Waypoint(-14, 282, 90),
+                                            Waypoint(5, 306, 180),
+                                ]),
             PathDesc(name: "RLScale",
                     waypoints: [Waypoint(0, 0, 90),
                                 Waypoint(0,12,90),
@@ -141,8 +161,8 @@ class PathfinderTest {
 
 
         def config = new Trajectory.Config(
-                Trajectory.FitMethod.HERMITE_QUINTIC,
-                Trajectory.Config.SAMPLES_HIGH,
+                Trajectory.FitMethod.HERMITE_CUBIC,
+                Trajectory.Config.SAMPLES_FAST,
                 timeStep, maxVel, maxAccel, maxJerk)
 
 
