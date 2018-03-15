@@ -33,28 +33,35 @@ class PathfinderTest {
                                 Waypoint(0, 120, 90)
                     ]),
             /*
-           [] x needs to be 6"-12"
-
+           [x] x needs to be 6"-12"
+           [x] test
              */
             PathDesc(name: "CRSwitch",
+//                    maxVel: 100.0,
+//                    maxAccel: 60.0,
+//                    maxJerk: 50,
                     waypoints: [Waypoint(0, 0, 90),
-                                Waypoint(28, 110, 90)
+                                Waypoint(40, 108, 90)
                     ]),
             /*
-            ok
+            cuts off pyramid of cubes
              */
             PathDesc(name: "CLSwitch",
                     waypoints: [Waypoint(0, 0, 90),
                                 Waypoint(-90, 110, 90)
                     ]),
             /*
-              []  y needs 8" - +12"
+              [x]  y needs 8" - +12"
+              [] test
              */
             PathDesc(name: "RRSwitch",
+//                    maxVel: 100.0,
+//                    maxAccel: 40.0,
+//                    maxJerk: 50,
                     waypoints: [
                             Waypoint(0, 0, 90),
                             Waypoint(10, 100, 90),
-                            Waypoint(-44, 145, 180),
+                            Waypoint(-44, 140, 180),
 //                                Waypoint(0, 0, 90),
 //                                Waypoint(10, 100, 90),
 //                                Waypoint(10, 120, 90),
@@ -62,15 +69,20 @@ class PathfinderTest {
 //                                Waypoint(-44, 145, 180)
                     ]),
             /*
-            ok
+          [x] 8" ->
+          [x] 12" \/
+          [] test
              */
             PathDesc(name: "LLSwitch",
                     waypoints: [
                             Waypoint(0, 0, 90),
-                            Waypoint(-20, 100, 90),
-                            Waypoint(-20,120,90),
-                            Waypoint(10,157,180),
-                            Waypoint(26, 160, 180),
+                            Waypoint(-10, 100, 90),
+                            Waypoint(44, 140, 0),
+//                            Waypoint(0, 0, 90),
+//                            Waypoint(-20, 100, 90),
+//                            Waypoint(-20,120,90),
+//                            Waypoint(10,137,0),
+//                            Waypoint(34, 150, 0),
                     ]),
             /*ok*/
             PathDesc(name: "RFwd",
@@ -85,7 +97,8 @@ class PathfinderTest {
                     ]),
             /*
            [x] y needs to be ~ +6"
-           [] x needs to be > 12"
+           [] x needs to be  -> 12"
+           [] test
              */
             PathDesc(name: "RRScale",
                     maxVel: 80.0,
@@ -108,6 +121,9 @@ class PathfinderTest {
 //                                Waypoint(-26, 300, 90),
 //                                Waypoint(-10, 310, 180)
 //                    ]),
+            /*
+            TODO: UNTESTED!
+             */
                         PathDesc(name: "LLScale",
                                 waypoints: [Waypoint(0, 0, 90),
                                             Waypoint(-10, 100, 90),
@@ -116,6 +132,7 @@ class PathfinderTest {
                                             Waypoint(-14, 282, 90),
                                             Waypoint(5, 306, 180),
                                 ]),
+
             PathDesc(name: "RLScale",
                     waypoints: [Waypoint(0, 0, 90),
                                 Waypoint(0,12,90),
@@ -162,7 +179,7 @@ class PathfinderTest {
 
         def config = new Trajectory.Config(
                 Trajectory.FitMethod.HERMITE_CUBIC,
-                Trajectory.Config.SAMPLES_FAST,
+                Trajectory.Config.SAMPLES_HIGH,
                 timeStep, maxVel, maxAccel, maxJerk)
 
 
