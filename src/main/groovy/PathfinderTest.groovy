@@ -101,15 +101,16 @@ class PathfinderTest {
            [] test
              */
             PathDesc(name: "RRScale",
-                    maxVel: 80.0,
-                    maxAccel: 30.0,
-                    maxJerk: 12,
+//                    maxVel: 80.0,
+//                    maxAccel: 40.0,
+//                    maxJerk: 20,
                     waypoints: [Waypoint(0, 0, 90),
                                 Waypoint(10, 100, 90),
-                                Waypoint(10, 240, 90),
-                                Waypoint(14, 270, 90),
-                                Waypoint(14, 282, 90),
-                                Waypoint(-5, 306, 180),
+                                Waypoint(10, 230, 90),
+                                Waypoint(14, 260, 90),
+                                Waypoint(14, 272, 90),
+                                Waypoint(-5, 296, 180),
+                                Waypoint(-32,296,180)
                     ]),
 //            /*
 //           [] y is too far by 12"
@@ -121,9 +122,7 @@ class PathfinderTest {
 //                                Waypoint(-26, 300, 90),
 //                                Waypoint(-10, 310, 180)
 //                    ]),
-            /*
-            TODO: UNTESTED!
-             */
+
                         PathDesc(name: "LLScale",
                                 waypoints: [Waypoint(0, 0, 90),
                                             Waypoint(-10, 100, 90),
