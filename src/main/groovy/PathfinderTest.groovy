@@ -29,14 +29,17 @@ class PathfinderTest {
 
     static def pathDescs = [
             PathDesc(name: "DriveStraight_10ft",
+                    maxVel: 50.0,
+                    maxAccel: 0.8 * 50.0,
+                    maxJerk: 0.8 * 50.0,
                     waypoints: [Waypoint(0.0d, 0.0d, 90.0d),
                                 Waypoint(0, 120, 90)
                     ]),
-            /*
-           [x] x needs to be 6"-12"
-           [x] test
-             */
+
             PathDesc(name: "CRSwitch",
+                    maxVel: 50.0,
+                    maxAccel: 0.8 * 50.0,
+                    maxJerk: 0.8 * 50.0,
 //                    maxVel: 100.0,
 //                    maxAccel: 60.0,
 //                    maxJerk: 50,
@@ -44,20 +47,23 @@ class PathfinderTest {
                                 Waypoint(40, 108, 90)
                     ]),
             /*
-            cuts off pyramid of cubes
+           TODO: cuts off pyramid of cubes
              */
             PathDesc(name: "CLSwitch",
+                    maxVel: 50.0,
+                    maxAccel: 0.8 * 50.0,
+                    maxJerk: 0.8 * 50.0,
                     waypoints: [Waypoint(0, 0, 90),
                                 Waypoint(-90, 110, 90)
                     ]),
-            /*
-              [x]  y needs 8" - +12"
-              [] test
-             */
+
             PathDesc(name: "RRSwitch",
 //                    maxVel: 100.0,
 //                    maxAccel: 40.0,
 //                    maxJerk: 50,
+                    maxVel: 50.0,
+                    maxAccel: 0.8 * 50.0,
+                    maxJerk: 0.8 * 50.0,
                     waypoints: [
                             Waypoint(0, 0, 90),
                             Waypoint(10, 100, 90),
@@ -68,12 +74,11 @@ class PathfinderTest {
 //                                Waypoint(-30, 145, 180),
 //                                Waypoint(-44, 145, 180)
                     ]),
-            /*
-          [x] 8" ->
-          [x] 12" \/
-          [] test
-             */
+
             PathDesc(name: "LLSwitch",
+                    maxVel: 50.0,
+                    maxAccel: 0.8 * 50.0,
+                    maxJerk: 0.8 * 50.0,
                     waypoints: [
                             Waypoint(0, 0, 90),
                             Waypoint(-10, 100, 90),
@@ -84,58 +89,56 @@ class PathfinderTest {
 //                            Waypoint(10,137,0),
 //                            Waypoint(34, 150, 0),
                     ]),
-            /*ok*/
+
             PathDesc(name: "RFwd",
+                    maxVel: 50.0,
+                    maxAccel: 0.8 * 50.0,
+                    maxJerk: 0.8 * 50.0,
                     waypoints: [Waypoint(0.0d, 0.0d, 90.0d),
                                 Waypoint(-10, 200, 90)
                     ]),
-            /*ok
-             */
+
             PathDesc(name: "LFwd",
+                    maxVel: 50.0,
+                    maxAccel: 0.8 * 50.0,
+                    maxJerk: 0.8 * 50.0,
                     waypoints: [Waypoint(0.0d, 0.0d, 90.0d),
                                 Waypoint(0, 220, 90)
                     ]),
-            /*
-           [x] y needs to be ~ +6"
-           [] x needs to be  -> 12"
-           [] test
-             */
+
             PathDesc(name: "RRScale",
-//                    maxVel: 80.0,
-//                    maxAccel: 40.0,
-//                    maxJerk: 20,
+                    maxVel: 50.0,
+                    maxAccel: 0.8 * 50.0,
+                    maxJerk: 0.8 * 50.0,
                     waypoints: [Waypoint(0, 0, 90),
                                 Waypoint(10, 100, 90),
-                                Waypoint(10, 230, 90),
-                                Waypoint(14, 260, 90),
-                                Waypoint(14, 272, 90),
-                                Waypoint(-5, 296, 180),
-                                Waypoint(-32,296,180)
+                                Waypoint(10, 200, 90),
+                                Waypoint(14, 240, 90),
+                                // Waypoint(14, 252, 90),
+                                //Waypoint(-5, 296, 180),
+                                Waypoint(-32, 282, 135)
                     ]),
-//            /*
-//           [] y is too far by 12"
-//           [] x is too far by 24"
-//             */
-//            PathDesc(name: "LLScale",
-//                    waypoints: [Waypoint(0, 0, 90),
-//                                Waypoint(-26, 100, 90),
-//                                Waypoint(-26, 300, 90),
-//                                Waypoint(-10, 310, 180)
-//                    ]),
 
-                        PathDesc(name: "LLScale",
-                                waypoints: [Waypoint(0, 0, 90),
-                                            Waypoint(-10, 100, 90),
-                                            Waypoint(-10, 240, 90),
-                                            Waypoint(-14, 270, 90),
-                                            Waypoint(-14, 282, 90),
-                                            Waypoint(5, 306, 180),
-                                ]),
+
+            PathDesc(name: "LLScale",
+                    maxVel: 50.0,
+                    maxAccel: 0.8 * 50.0,
+                    maxJerk: 0.8 * 50.0,
+                    waypoints: [Waypoint(0, 0, 90),
+                                Waypoint(-10, 100, 90),
+                                Waypoint(-10, 214, 90),
+                                Waypoint(-14, 252, 90),
+                                Waypoint(-14, 256, 90),
+                                Waypoint(5, 280, 180),
+                    ]),
 
             PathDesc(name: "RLScale",
+                    maxVel: 50.0,
+                    maxAccel: 0.8 * 50.0,
+                    maxJerk: 0.8 * 50.0,
                     waypoints: [Waypoint(0, 0, 90),
-                                Waypoint(0,12,90),
-                                Waypoint(10,120,90),
+                                Waypoint(0, 12, 90),
+                                Waypoint(10, 120, 90),
                                 Waypoint(10, 160, 90),
                                 Waypoint(-60, 230, 180),
                                 Waypoint(-130, 230, 180),
@@ -143,18 +146,20 @@ class PathfinderTest {
                                 Waypoint(-180, 320, 90),
                     ]),
             PathDesc(name: "LRScale",
+                    maxVel: 50.0,
+                    maxAccel: 0.8 * 50.0,
+                    maxJerk: 0.8 * 50.0,
                     waypoints: [Waypoint(0, 0, 90),
-                                Waypoint(0,12,90),
-                                Waypoint(-10,120,90),
+                                Waypoint(0, 12, 90),
+                                Waypoint(-10, 120, 90),
                                 Waypoint(-10, 146, 90),
                                 Waypoint(60, 230, 180),
                                 Waypoint(130, 230, 180),
                                 Waypoint(180, 300, 90),
                                 Waypoint(180, 320, 90),
-                    ]),
+                    ])
 
     ]
-
 
 
     static final double cm_per_inch = 2.54
@@ -172,7 +177,7 @@ class PathfinderTest {
 
         double timeStep = 0.01
         double maxVel = desc.maxVel * m_per_inch //(50.0 * m_per_inch)
-        double maxAccel =desc.maxAccel * m_per_inch  //0.25 * maxVel
+        double maxAccel = desc.maxAccel * m_per_inch  //0.25 * maxVel
         double maxJerk = desc.maxJerk * m_per_inch
 
 
@@ -208,9 +213,9 @@ class PathfinderTest {
 #include "profile.h"
 namespace mp {
 /*
-(${desc.maxVel*m_per_inch}, ${desc.maxAccel*m_per_inch}, ${desc.maxJerk*m_per_inch})
+(${desc.maxVel * m_per_inch}, ${desc.maxAccel * m_per_inch}, ${desc.maxJerk * m_per_inch})
 -------------
-\t${desc.waypoints.collect{"($it.x,$it.y,${r2d(it.angle)}"}.join(',\n\t')}
+\t${desc.waypoints.collect { "($it.x,$it.y,${r2d(it.angle)}" }.join(',\n\t')}
 */
 extern std::vector<mp::Prof> ${desc.name};
 }
@@ -220,8 +225,8 @@ extern std::vector<mp::Prof> ${desc.name};
 //extern std::array<mp::Prof,${path.length()}>
         }
 
-        new File("gensrc/${desc.name}_profile.cpp").withPrintWriter{pw->
-            pw<<"""
+        new File("gensrc/${desc.name}_profile.cpp").withPrintWriter { pw ->
+            pw << """
 #include "${desc.name}_profile.h"
 
 
@@ -240,6 +245,6 @@ std::vector<mp::Prof> mp::${desc.name} =  {{
     }
 
     static void main(args) {
-       pathDescs.each{gen(it)}
+        pathDescs.each { gen(it) }
     }
 }
