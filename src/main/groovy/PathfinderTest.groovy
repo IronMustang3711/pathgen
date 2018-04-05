@@ -121,7 +121,7 @@ class PathfinderTest {
 
 
             PathDesc(name: "LLScale",
-                    maxVel: 50.0,
+                    maxVel: 70.0,
                     maxAccel: 0.8 * 50.0,
                     maxJerk: 0.8 * 50.0,
                     waypoints: [Waypoint(0, 0, 90),
@@ -129,7 +129,7 @@ class PathfinderTest {
                                 Waypoint(-10, 214, 90),
                                 Waypoint(-14, 252, 90),
                                 Waypoint(-14, 256, 90),
-                                Waypoint(18, 286, 180),
+                                Waypoint(36, 286, 180),
                     ]),
 
             PathDesc(name: "RLScale",
