@@ -50,10 +50,11 @@ class PathfinderTest {
            TODO: cuts off pyramid of cubes
              */
             PathDesc(name: "CLSwitch",
-                    maxVel: 50.0,
-                    maxAccel: 0.8 * 50.0,
+                    maxVel: 80.0,
+                    maxAccel: 0.8 * 70.0,
                     maxJerk: 0.8 * 50.0,
                     waypoints: [Waypoint(0, 0, 90),
+                                Waypoint(-90, 100, 90),
                                 Waypoint(-90, 110, 90)
                     ]),
 
