@@ -130,7 +130,7 @@ class PathfinderTest {
                                 Waypoint(-8, 214, 90),
                                 Waypoint(-12, 252, 90),
                                 Waypoint(-12, 256, 90),
-                                Waypoint(40, 286, 180),
+                                Waypoint(46, 286, 180),
                     ]),
 
             PathDesc(name: "RLScale",
